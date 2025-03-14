@@ -7,25 +7,10 @@ import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 import io.flutter.plugin.common.BinaryMessenger
 import io.flutter.plugin.common.MethodChannel
-import io.flutter.plugin.common.PluginRegistry.Registrar
 
 class FlutterInstallAppPlugin : FlutterPlugin, ActivityAware {
     private var channel: MethodChannel? = null
     private var methodCallHandler: MethodCallHandlerImpl? = null
-
-    companion object {
-        @JvmStatic
-        fun registerWith(registrar: Registrar) {
-            val plugin = FlutterInstallAppPlugin()
-
-            plugin.onAttachedToEngine(registrar.messenger())
-
-            val activity = registrar.activity()
-            if (activity != null) {
-                plugin.onActivityChanged(activity)
-            }
-        }
-    }
 
     override fun onAttachedToEngine(binding: FlutterPlugin.FlutterPluginBinding) {
         onAttachedToEngine(binding.binaryMessenger)
